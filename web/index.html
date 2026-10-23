@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git Constellation — 3D Celestial Solar System of Commits</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 3D WebGL Canvas Container -->
+    <div id="canvas-container"></div>
+
+    <!-- Floating Raycast Tooltip -->
+    <div id="hover-tooltip" class="hover-tooltip"></div>
+
+    <!-- UI Overlay Layer -->
+    <div class="ui-overlay">
+        
+        <!-- Header Bar -->
+        <header class="header-bar glass-panel interactive">
+            <div class="brand-section">
+                <div class="brand-icon"></div>
+                <div>
+                    <div class="brand-title">
+                        <span>Git Constellation</span>
+                        <span id="repo-name" class="repo-badge"><span class="dot"></span> Repository</span>
+                    </div>
+                    <div class="brand-subtitle">3D Solar System of Planetary Commits</div>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <div class="repo-badge" style="background: rgba(255,255,255,0.04);">
+                    <span id="api-status-dot" class="dot" style="background: #FFB300;"></span>
+                    <span id="api-status-text" style="color: var(--text-secondary); font-size: 0.72rem;">Connecting...</span>
+                </div>
+
+                <button id="btn-illustrate" class="btn-icon active" title="Snap Camera to Solar System Illustration Perspective [Key: I]">
+                    <span>🪐</span><span class="btn-label">Illustration View</span>
+                </button>
+
+                <button id="btn-view-toggle" class="btn-icon" title="Switch between 3D Orbital and Top-Down 2D views">
+                    <span>🧭</span><span class="btn-label">Orbital 3D</span>
+                </button>
+
+                <button id="btn-sound" class="btn-icon" title="Toggle Celestial Synthesizer Drone">
+                    <span>🎵</span><span class="btn-label">Audio OFF</span>
+                </button>
+
+                <button id="btn-autorotate" class="btn-icon active" title="Toggle Cinematic Planetary Orbit">
+                    <span>🔄</span><span>Orbit</span>
+                </button>
+
+                <button id="btn-reset" class="btn-icon" title="Reset Camera to Global Galaxy View [Key: R]">
+                    <span>🎯</span><span>Reset</span>
+                </button>
+
+                <button id="btn-load-repo" class="btn-icon" title="Inspect Another Git Repository">
+                    <span>📂</span><span>Open Repo</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Middle HUD: Sidebars -->
+        <div class="hud-middle">
+            <!-- Left Sidebar: Planetary Classification & Branch Orbits -->
+            <aside class="sidebar-left">
+                <!-- Celestial Body Classifications -->
+                <div class="card-section glass-panel">
+                    <div class="card-title">
+                        <span>Solar System Bodies</span>
+                        <span id="total-stars-count" style="color: var(--accent-cyan);">--</span>
+                    </div>
+                    <ul id="legend-list" class="legend-list">
+                        <li class="legend-item" onclick="toggleStarClass('SUPERMASSIVE_SUN')" title="Central Genesis Sun (Root Commit)">
+                            <div class="legend-dot-label">
+                                <span class="planet-emoji">☀️</span>
+                                <span>Central Genesis Sun</span>
+                            </div>
+                            <span id="count-sun" class="legend-count">0</span>
+                        </li>
+                        <li class="legend-item" onclick="toggleStarClass('BLUE_SUPERGIANT')" title="Jovian & Kronian Gas Giants (Churn >= 500 lines or major merges)">
+                            <div class="legend-dot-label">
+                                <span class="planet-emoji">🪐</span>
+                                <span>Jupiter / Saturn Giant</span>
+                            </div>
+                            <span id="count-supergiant" class="legend-count">0</span>
+                        </li>
+                        <li class="legend-item" onclick="toggleStarClass('YELLOW_STAR')" title="Habitable Earth-Class World with Moon (Commits 50 - 200 lines)">
+                            <div class="legend-dot-label">
+                                <span class="planet-emoji">🌍</span>
+                                <span>Earth & Moon World</span>
+                            </div>
+                            <span id="count-yellow" class="legend-count">0</span>
+                        </li>
+                        <li class="legend-item" onclick="toggleStarClass('WHITE_DWARF')" title="Neptune / Uranus Ice Giant (Churn 200 - 500 lines)">
+                            <div class="legend-dot-label">
+                                <span class="planet-emoji">🔵</span>
+                                <span>Ice Giant (Neptune)</span>
+                            </div>
+                            <span id="count-whitedwarf" class="legend-count">0</span>
+                        </li>
+                        <li class="legend-item" onclick="toggleStarClass('RED_DWARF')" title="Mars & Mercury Terrestrial Worlds (Bugfixes < 50 lines)">
+                            <div class="legend-dot-label">
+                                <span class="planet-emoji">🔴</span>
+                                <span>Mars / Mercury Rocky</span>
+                            </div>
+                            <span id="count-reddwarf" class="legend-count">0</span>
+                        </li>
+                        <li class="legend-item" onclick="toggleStarClass('MILESTONE_PULSAR')" title="Pluto / Cosmic Comet with Ion Tail (Tagged Milestone Releases)">
+                            <div class="legend-dot-label">
+                                <span class="planet-emoji">☄️</span>
+                                <span>Milestone Comet</span>
+                            </div>
+                            <span id="count-pulsar" class="legend-count">0</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Branch Orbits Filter -->
+                <div class="card-section glass-panel">
+                    <div class="card-title">
+                        <span>Concentric Orbits</span>
+                        <span>Branches</span>
+                    </div>
+                    <div id="branch-list" class="branch-list">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Right Sidebar: Planet Telemetry Inspector -->
+            <aside id="sidebar-right" class="sidebar-right">
+                <div class="inspector-card glass-panel">
+                    <div class="inspector-header">
+                        <span id="inspector-class" class="star-badge">PLANET</span>
+                        <button class="close-btn" onclick="closeInspector()" title="Close Inspector [Esc]">&times;</button>
+                    </div>
+
+                    <div id="inspector-title" class="commit-title">Commit Message</div>
+
+                    <div id="inspector-meta" style="display:flex;flex-direction:column;gap:8px;">
+                        <div class="meta-row">
+                            <span>Hash</span>
+                            <div style="display:flex;align-items:center;gap:6px;">
+                                <span id="inspector-hash" class="meta-val" style="font-size:0.72rem;">--</span>
+                                <button id="copy-hash-btn" class="btn-icon" style="padding:2px 6px;font-size:0.68rem;" onclick="copySelectedHash()">Copy</button>
+                            </div>
+                        </div>
+
+                        <div class="meta-row">
+                            <span>Author</span>
+                            <span id="inspector-author" class="meta-val">--</span>
+                        </div>
+
+                        <div class="meta-row">
+                            <span>Timestamp</span>
+                            <span id="inspector-date" class="meta-val">--</span>
+                        </div>
+
+                        <div class="meta-row">
+                            <span>Orbital Plane</span>
+                            <span id="inspector-branch" class="meta-val" style="color:var(--accent-cyan);">--</span>
+                        </div>
+                    </div>
+
+                    <!-- Churn Stats -->
+                    <div class="churn-container">
+                        <div class="slider-labels">
+                            <span>Code Churn Metrics</span>
+                            <span id="churn-stats-add" style="color:#00E676;">+0</span>
+                        </div>
+                        <div class="churn-bar-wrap">
+                            <div id="churn-bar-add" class="churn-bar-add" style="width: 50%;"></div>
+                            <div id="churn-bar-del" class="churn-bar-del" style="width: 50%;"></div>
+                        </div>
+                        <div class="churn-stats">
+                            <span>Additions</span>
+                            <span id="churn-stats-del" style="color:#FF5252;">-0 deleted</span>
+                        </div>
+                    </div>
+
+                    <!-- Parents Link -->
+                    <div>
+                        <div class="card-title" style="margin-bottom:4px;">Parent Bodies (DAG)</div>
+                        <div id="inspector-parents" class="parent-links">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Bottom Timeline Playback Scrubber -->
+        <footer class="timeline-bottom glass-panel interactive">
+            <div class="timeline-controls-row">
+                <!-- Playback Buttons -->
+                <div class="playback-buttons">
+                    <button id="btn-play" class="btn-play" title="Play / Pause Chronological Evolution [Space]">▶</button>
+                    
+                    <select id="playback-speed" class="btn-icon" style="padding: 6px 8px; cursor: pointer;">
+                        <option value="0.5">0.5x Speed</option>
+                        <option value="1.0" selected>1.0x Speed</option>
+                        <option value="2.0">2.0x Speed</option>
+                        <option value="5.0">5.0x Speed</option>
+                    </select>
+                </div>
+
+                <!-- Range Slider -->
+                <div class="timeline-slider-wrap">
+                    <div class="slider-labels">
+                        <span>Genesis Sun (Root)</span>
+                        <span class="timeline-info">
+                            <span>Chronological Evolution:</span>
+                            <span id="current-star-counter" class="current-star-counter">-- / --</span>
+                        </span>
+                        <span>Latest Release</span>
+                    </div>
+                    <input id="timeline-scrubber" type="range" class="scrubber-slider" min="1" max="1" value="1">
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Scripts: Vendor Three.js & OrbitControls -->
+    <script src="vendor/three.min.js"></script>
+    <script src="vendor/OrbitControls.js"></script>
+    <!-- Procedural Planet & Star Textures -->
+    <script src="textures.js"></script>
+    <!-- Fallback Sample Data -->
+    <script src="sample_data.js"></script>
+    <!-- Synthesizer Audio -->
+    <script src="audio.js"></script>
+    <!-- Core Solar System Application -->
+    <script src="app.js"></script>
+</body>
+</html>
