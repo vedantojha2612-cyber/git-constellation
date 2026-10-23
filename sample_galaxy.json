@@ -1,0 +1,221 @@
+{
+  "repo_name": "Git-Constellation-Demo",
+  "root_hash": "130a8fc7fd60a0d9f6a093f55bf02b200712847c",
+  "main_branch": "main",
+  "total_commits": 4,
+  "total_branches": 2,
+  "total_tags": 1,
+  "time_range_start": 1792690973,
+  "time_range_end": 1792690973,
+  "branches": [
+    {
+      "name": "main",
+      "semi_major_axis": 35.0,
+      "semi_minor_axis": 34.89,
+      "eccentricity": 0.08,
+      "inclination_rad": 0.0,
+      "ascending_node_rad": 0.0,
+      "color": "#00E5FF",
+      "commit_count": 3
+    },
+    {
+      "name": "feature/nebula-renderer",
+      "semi_major_axis": 60.0,
+      "semi_minor_axis": 59.57,
+      "eccentricity": 0.12,
+      "inclination_rad": 0.2,
+      "ascending_node_rad": 3.1416,
+      "color": "#FF9100",
+      "commit_count": 1
+    }
+  ],
+  "stars": [
+    {
+      "hash": "7fbeea2faf604aed2b62226341067bd216e3d637",
+      "short_hash": "7fbeea2",
+      "author_name": "Saarthak Ojha",
+      "author_email": "saarthak@github.com",
+      "timestamp": 1792690973,
+      "date_iso": "2026-10-22T23:12:53+05:30",
+      "message": "Merge branch feature/nebula-renderer",
+      "parents": [
+        "accba3d4c93fafd83e319f8a807195ea7a63ddd8",
+        "cb5a65f660626dbbe065ba30abdef979ef0f2e4c"
+      ],
+      "branch": "main",
+      "tags": [],
+      "lines_added": 0,
+      "lines_deleted": 0,
+      "total_churn": 0,
+      "is_merge": true,
+      "is_root": false,
+      "star_class": "BLUE_SUPERGIANT",
+      "star_color": "#00E5FF",
+      "star_size": 2.2,
+      "star_luminosity": 2.0,
+      "orbit_radius": 32.2,
+      "orbit_angle_rad": 0.0,
+      "position_3d": {
+        "x": 32.2,
+        "y": 0.0,
+        "z": 0.45
+      },
+      "normalized_time": 0.0
+    },
+    {
+      "hash": "cb5a65f660626dbbe065ba30abdef979ef0f2e4c",
+      "short_hash": "cb5a65f",
+      "author_name": "Saarthak Ojha",
+      "author_email": "saarthak@github.com",
+      "timestamp": 1792690973,
+      "date_iso": "2026-10-22T23:12:53+05:30",
+      "message": "feat: render 3D glowing nebula particles",
+      "parents": [
+        "accba3d4c93fafd83e319f8a807195ea7a63ddd8"
+      ],
+      "branch": "feature/nebula-renderer",
+      "tags": [],
+      "lines_added": 550,
+      "lines_deleted": 0,
+      "total_churn": 550,
+      "is_merge": false,
+      "is_root": false,
+      "star_class": "BLUE_SUPERGIANT",
+      "star_color": "#00E5FF",
+      "star_size": 2.2,
+      "star_luminosity": 2.0,
+      "orbit_radius": 52.8,
+      "orbit_angle_rad": 0.0,
+      "position_3d": {
+        "x": -52.8,
+        "y": -0.0,
+        "z": 4.11
+      },
+      "normalized_time": 0.0
+    },
+    {
+      "hash": "accba3d4c93fafd83e319f8a807195ea7a63ddd8",
+      "short_hash": "accba3d",
+      "author_name": "Saarthak Ojha",
+      "author_email": "saarthak@github.com",
+      "timestamp": 1792690973,
+      "date_iso": "2026-10-22T23:12:53+05:30",
+      "message": "feat: core solar loop",
+      "parents": [
+        "130a8fc7fd60a0d9f6a093f55bf02b200712847c"
+      ],
+      "branch": "main",
+      "tags": [
+        "v1.0.0"
+      ],
+      "lines_added": 1,
+      "lines_deleted": 0,
+      "total_churn": 1,
+      "is_merge": false,
+      "is_root": false,
+      "star_class": "MILESTONE_PULSAR",
+      "star_color": "#E040FB",
+      "star_size": 2.8,
+      "star_luminosity": 2.4,
+      "orbit_radius": 36.23,
+      "orbit_angle_rad": 2.0944,
+      "position_3d": {
+        "x": -18.11,
+        "y": 31.37,
+        "z": -0.45
+      },
+      "normalized_time": 0.0
+    },
+    {
+      "hash": "130a8fc7fd60a0d9f6a093f55bf02b200712847c",
+      "short_hash": "130a8fc",
+      "author_name": "Saarthak Ojha",
+      "author_email": "saarthak@github.com",
+      "timestamp": 1792690973,
+      "date_iso": "2026-10-22T23:12:53+05:30",
+      "message": "Initial commit: Big Bang Core",
+      "parents": [],
+      "branch": "main",
+      "tags": [],
+      "lines_added": 1,
+      "lines_deleted": 0,
+      "total_churn": 1,
+      "is_merge": false,
+      "is_root": true,
+      "star_class": "SUPERMASSIVE_SUN",
+      "star_color": "#FFB300",
+      "star_size": 4.2,
+      "star_luminosity": 3.5,
+      "orbit_radius": 0.0,
+      "orbit_angle_rad": 0.0,
+      "position_3d": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "normalized_time": 0.0
+    }
+  ],
+  "filaments": [
+    {
+      "source_hash": "accba3d4c93fafd83e319f8a807195ea7a63ddd8",
+      "target_hash": "7fbeea2faf604aed2b62226341067bd216e3d637",
+      "source_pos": {
+        "x": -18.11,
+        "y": 31.37,
+        "z": -0.45
+      },
+      "target_pos": {
+        "x": 32.2,
+        "y": 0.0,
+        "z": 0.45
+      },
+      "is_merge_filament": true
+    },
+    {
+      "source_hash": "cb5a65f660626dbbe065ba30abdef979ef0f2e4c",
+      "target_hash": "7fbeea2faf604aed2b62226341067bd216e3d637",
+      "source_pos": {
+        "x": -52.8,
+        "y": -0.0,
+        "z": 4.11
+      },
+      "target_pos": {
+        "x": 32.2,
+        "y": 0.0,
+        "z": 0.45
+      },
+      "is_merge_filament": true
+    },
+    {
+      "source_hash": "accba3d4c93fafd83e319f8a807195ea7a63ddd8",
+      "target_hash": "cb5a65f660626dbbe065ba30abdef979ef0f2e4c",
+      "source_pos": {
+        "x": -18.11,
+        "y": 31.37,
+        "z": -0.45
+      },
+      "target_pos": {
+        "x": -52.8,
+        "y": -0.0,
+        "z": 4.11
+      },
+      "is_merge_filament": false
+    },
+    {
+      "source_hash": "130a8fc7fd60a0d9f6a093f55bf02b200712847c",
+      "target_hash": "accba3d4c93fafd83e319f8a807195ea7a63ddd8",
+      "source_pos": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "target_pos": {
+        "x": -18.11,
+        "y": 31.37,
+        "z": -0.45
+      },
+      "is_merge_filament": false
+    }
+  ]
+}

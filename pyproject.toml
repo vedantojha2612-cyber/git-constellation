@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "git-constellation"
+version = "1.0.0"
+description = "Turn your Git repository into an interactive 3D solar system where branches are planetary orbits and commits are stars obeying gravitational physics!"
+readme = "README.md"
+authors = [{ name = "Saarthak Ojha", email = "vedantojha2612@gmail.com" }]
+license = { text = "MIT" }
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Version Control :: Git",
+    "Topic :: Scientific/Engineering :: Visualization",
+]
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi>=0.110.0",
+    "uvicorn>=0.28.0",
+    "pydantic>=2.0.0",
+]
+
+[project.scripts]
+git-constellation = "cli:main"
+
+[project.urls]
+"Homepage" = "https://github.com/vedantojha2612-cyber/git-constellation"
+"Bug Tracker" = "https://github.com/vedantojha2612-cyber/git-constellation/issues"
